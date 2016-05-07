@@ -1,0 +1,27 @@
+{
+  "name": "pm2monit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daitr-gu/pm2monit.git"
+  },
+  "author": "Dai Tran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daitr-gu/pm2monit/issues"
+  },
+  "homepage": "https://github.com/daitr-gu/pm2monit#readme",
+  "dependencies": {
+    "async": "^2.0.0-rc.4",
+    "dotenv": "^2.0.0",
+    "lodash": "^4.11.2",
+    "moment": "^2.13.0",
+    "node-statsd": "^0.1.1",
+    "pm2-interface": "^2.0.4"
+  }
+}
