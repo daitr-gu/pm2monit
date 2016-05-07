@@ -22,7 +22,7 @@ ipm2.on('ready', function() {
 
     var interval = process.env.INTERVAL || 30000;
 
-    setTimeout(function() {
+    setInterval(function() {
         ipm2.rpc.getMonitorData({}, function(err, data) {
             if (!err && data) {
                 processPm2Data(data);
