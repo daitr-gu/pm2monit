@@ -72,10 +72,11 @@ function processPm2Data(data) {
                 var cpuMetrics = {
                     stats: {
                         bdy: {
-                            cpu: serviceInfo.monit.cpu
+                            cpu: {}
                         }
                     }
                 };
+                cpuMetrics.stats.bdy.cpu[serviceInfo.name] = serviceInfo.monit.cpu;
                 client.write(cpuMetrics);
             }
         });
