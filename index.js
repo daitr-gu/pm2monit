@@ -27,9 +27,6 @@ var client = graphite.createClient(graphiteUrl);
 
 var services = (process.env.SERVICES || '').split(',');
 
-var STAT_MEM_USAGE = 'memory';
-var STAT_CPU_USAGE = 'cpu'
-
 ipm2.on('ready', function() {
     console.log('Connected to pm2');
 
@@ -55,15 +52,30 @@ function processPm2Data(data) {
     if (_.isArray(data)) {
         async.each(data, function(serviceInfo) {
             if (services.indexOf(serviceInfo.name) > -1) {
+
+                // Memory Metrics
                 var memoryInByte = serviceInfo.monit.memory;
                 var memoryInMB = Math.round(100 * memoryInByte / (1024 * 1024)) / 100;
 
-                var memoryStats = STAT_MEM_USAGE + '.' + serviceInfo.name;
-                var memoryMetrics = { memoryStats: memoryInMB};
+                var memoryMetrics = {
+                    stats: {
+                        bdy: {
+                            memory: {}
+                        }
+                    }
+                };
+                memoryMetrics.stats.bdy.memory[serviceInfo.name] = memoryInMB;
                 client.write(memoryMetrics);
 
-                var cpuStats = STAT_CPU_USAGE + '.' + serviceInfo.name;
-                var cpuMetrics = { cpuStats: serviceInfo.monit.cpu };
+
+                // CPU Metrics
+                var cpuMetrics = {
+                    stats: {
+                        bdy: {
+                            cpu: serviceInfo.monit.cpu
+                        }
+                    }
+                };
                 client.write(cpuMetrics);
             }
         });
