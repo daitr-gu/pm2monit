@@ -19,6 +19,7 @@
   "dependencies": {
     "async": "^2.0.0-rc.4",
     "dotenv": "^2.0.0",
+    "graphite": "0.0.6",
     "lodash": "^4.11.2",
     "moment": "^2.13.0",
     "node-statsd": "^0.1.1",
